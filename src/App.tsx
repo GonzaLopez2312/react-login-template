@@ -1,7 +1,7 @@
 import "./App.css";
-import { LoginForm } from "./pages/Login/login-form";
+import { LoginForm } from "./pages/Login/login-form.component";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { RegisterForm } from "./pages/Register/register-form";
+import { RegisterForm } from "./pages/Register/register-form.component";
 import { ThemeProvider } from "./components/theme-provider";
 
 function App() {
