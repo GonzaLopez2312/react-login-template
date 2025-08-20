@@ -22,7 +22,7 @@ export function RegisterForm({
     e.preventDefault();
 
     if (password !== repeatPassword) {
-      setError("Las contraseñas no coinciden");
+      setError("Passwords do not match");
       return;
     }
 
@@ -32,10 +32,9 @@ export function RegisterForm({
 
     try {
       await register(user);
-      navigate("/login");
-    } catch (error) {
-      console.log(error)
-      setError("Hubo un error al registrar el usuario");
+      navigate("/main");
+    } catch {
+      setError("There was an error registering the user");
     }
   };
 

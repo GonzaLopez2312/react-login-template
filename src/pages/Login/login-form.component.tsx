@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { login } from "./service/login.service";
 import { useState } from "react";
 import type { User } from "@/models/user.model";
+import {useNavigate } from "react-router-dom"
 
 export function LoginForm({
   className,
@@ -18,15 +19,21 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const user: User = { username, password };
 
+    setError("");
+
     try {
       await login(user);
-    } catch (error) {
-      console.error("Error al loguear:", error);
+      navigate("/main");
+    } catch {
+      setError("There was an error logging in the user");
     }
   };
 
@@ -63,6 +70,9 @@ export function LoginForm({
                   required
                 />
               </div>
+
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
                   Login

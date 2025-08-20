@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authRequestInterceptor } from "@/interceptors/auth/auth.interceptor";
 
 const api = axios.create(
     {
@@ -8,5 +9,7 @@ const api = axios.create(
         },
     }
 )
+
+api.interceptors.request.use(authRequestInterceptor);
 
 export default api;
